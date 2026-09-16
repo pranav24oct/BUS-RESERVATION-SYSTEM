@@ -1,51 +1,81 @@
-#ifndef PASSENGER_H
-#define PASSENGER_H
+#ifndef REFUND_H
+#define REFUND_H
 
 #include <iostream>
 #include <string>
 using namespace std;
 
-class User
+
+// Base class for demonstrating Object Slicing
+class RefundBase
 {
 protected:
-    int userId;
-    string name;
-    string phone;
+    int refundId;
 
 public:
-    User();
-    User(int userId, string name, string phone);
-    ~User();
+    RefundBase();
+    RefundBase(int id);
 
-    string getName();
-    void displayUser();
+    virtual void displayBase();
 };
 
 
-class Passenger : public User
+// Refund class
+class Refund final : public RefundBase
 {
 private:
-    string email;
+    double amount;
+    string status;
+
+    // Static variable
+    static int refundCount;
 
 public:
-    
-    Passenger();
-    Passenger(int userId, string name, string phone, string email);
 
-    ~Passenger();
+    // Nested class
+    class RefundDetails
+    {
+    private:
+        string description;
+
+    public:
+        RefundDetails();
+        RefundDetails(string desc);
+
+        void displayDetails();
+    };
 
 
-    string getEmail();
-    void setEmail(string email);
+    // Constructors and Destructor
+    Refund();
+    Refund(int id, double amount);
+    ~Refund();
 
-    void displayRole();
-    void searchBus();
-    void viewBookings();
-    void cancelBooking();
-    void displayPassenger();
 
-    friend bool operator==(const Passenger& p1,
-                           const Passenger& p2);
+    // Member functions
+    void processRefund();
+
+    void setRefund(double amount);
+    void setRefund(double amount, string status);
+
+    void displayRefund();
+
+
+    // Static function
+    static int getRefundCount();
+
+
+    // Assignment operator
+    Refund& operator=(const Refund& other);
+
+
+    // Arithmetic operator
+    friend Refund operator+(const Refund& r1, const Refund& r2);
+
+
+    // Stream operators using friend functions
+    friend ostream& operator<<(ostream& out, const Refund& r);
+    friend istream& operator>>(istream& in, Refund& r);
 };
 
 #endif
