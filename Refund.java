@@ -1,28 +1,72 @@
-public class Refund {
-    private int refundId;
-    private double amount;
-    private String status;
+#include "Refund.h"
 
-    public Refund(int refundId, double amount) {
-        this.refundId = refundId;
-        this.amount = amount;
-        this.status = "Pending";
+Refund::Refund()
+{
+    refundId = 0;
+    amount = 0;
+    status = "Pending";
+}
+
+Refund::Refund(int id, double amount)
+{
+    refundId = id;
+    this->amount = amount;
+    status = "Pending";
+}
+
+
+Refund::~Refund()
+{
+    cout << "Refund object destroyed." << endl;
+}
+
+
+void Refund::processRefund()
+{
+    status = "Processed";
+}
+
+
+void Refund::setRefund(double amount)
+{
+    this->amount = amount;
+}
+
+void Refund::setRefund(double amount, string status)
+{
+    this->amount = amount;
+    this->status = status;
+}
+
+void Refund::displayRefund()
+{
+    cout << "\n========== REFUND ==========" << endl;
+    cout << "Refund ID : " << refundId << endl;
+    cout << "Amount    : Rs. " << amount << endl;
+    cout << "Status    : " << status << endl;
+    cout << "============================" << endl;
+}
+
+
+Refund& Refund::operator=(const Refund& other)
+{
+    if (this != &other)
+    {
+        refundId = other.refundId;
+        amount = other.amount;
+        status = other.status;
     }
 
-    public void processRefund() {
-        status = "Processed";
+    return *this;
+}
 
-        System.out.println(
-            "\nRefund of Rs. " + amount +
-            " processed successfully."
-        );
-    }
+Refund operator+(const Refund& r1, const Refund& r2)
+{
+    Refund temp;
 
-    public void displayRefund() {
-        System.out.println("\n========== Refund ==========");
-        System.out.println("Refund ID : " + refundId);
-        System.out.println("Amount    : Rs. " + amount);
-        System.out.println("Status    : " + status);
-        System.out.println("============================");
-    }
+    temp.refundId = r1.refundId + r2.refundId;
+    temp.amount = r1.amount + r2.amount;
+    temp.status = "Combined";
+
+    return temp;
 }
