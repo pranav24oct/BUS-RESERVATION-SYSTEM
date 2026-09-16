@@ -1,3 +1,11 @@
+#ifndef ROUTE_H
+#define ROUTE_H
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
 class Route
 {
 private:
@@ -20,5 +28,8 @@ public:
     Route& operator=(const Route& other);
 
     // Friend operator
-    friend bool operator==(const Route& r1, const Route& r2);
+    friend bool operator==(const Route& r1,
+                           const Route& r2);
 };
+
+#endif
