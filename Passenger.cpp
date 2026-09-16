@@ -1,121 +1,106 @@
-class User
+#include "Passenger.h"
+
+// ================= USER =================
+
+User::User()
 {
-protected:
-    int userId;
-    string name;
-    string phone;
+    userId = 0;
+    name = "Unknown";
+    phone = "Unknown";
+}
 
-public:
-
-
-    User()
-    {
-        userId = 0;
-        name = "Unknown";
-        phone = "Unknown";
-    }
-
-    User(int userId, string name, string phone)
-    {
-        this->userId = userId;
-        this->name = name;
-        this->phone = phone;
-    }
-
-    ~User()
-    {
-        cout << "User object destroyed." << endl;
-    }
-
-    string getName()
-    {
-        return name;
-    }
-
-    void displayUser()
-    {
-        cout << "User ID : " << userId << endl;
-        cout << "Name    : " << name << endl;
-        cout << "Phone   : " << phone << endl;
-    }
-};
-
-
-class Passenger : public User
+User::User(int userId, string name, string phone)
 {
-private:
-    string email;
+    this->userId = userId;
+    this->name = name;
+    this->phone = phone;
+}
 
-public:
+User::~User()
+{
+    cout << "User object destroyed." << endl;
+}
 
-    Passenger()
-        : User(0, "Unknown", "Unknown")
-    {
-        email = "Unknown";
-    }
+string User::getName()
+{
+    return name;
+}
 
-    Passenger(
-        int userId,
-        string name,
-        string phone,
-        string email)
-        : User(userId, name, phone)
-    {
-        this->email = email;
-    }
-
-    ~Passenger()
-    {
-        cout << "Passenger object destroyed." << endl;
-    }
-
-    string getEmail()
-    {
-        return email;
-    }
-
-    void setEmail(string email)
-    {
-        this->email = email;
-    }
-
-    void displayRole()
-    {
-        cout << "Role : Passenger" << endl;
-    }
-
-    void searchBus()
-    {
-        cout << getName() << " is searching for a bus." << endl;
-    }
-
-    void viewBookings()
-    {
-        cout << getName() << " is viewing bookings." << endl;
-    }
-
-    void cancelBooking()
-    {
-        cout << getName() << " is cancelling a booking." << endl;
-    }
-
-    void displayPassenger()
-    {
-        cout << "\n========== PASSENGER ==========" << endl;
-
-        displayUser();
-        displayRole();
-
-        cout << "Email : " << email << endl;
-
-        cout << "===============================" << endl;
-    }
+void User::displayUser()
+{
+    cout << "User ID : " << userId << endl;
+    cout << "Name    : " << name << endl;
+    cout << "Phone   : " << phone << endl;
+}
 
 
-    friend bool operator==(const Passenger& p1,
-                           const Passenger& p2);
-};
+// ================= PASSENGER =================
 
+Passenger::Passenger()
+    : User(0, "Unknown", "Unknown")
+{
+    email = "Unknown";
+}
+
+Passenger::Passenger(
+    int userId,
+    string name,
+    string phone,
+    string email)
+    : User(userId, name, phone)
+{
+    this->email = email;
+}
+
+Passenger::~Passenger()
+{
+    cout << "Passenger object destroyed." << endl;
+}
+
+string Passenger::getEmail()
+{
+    return email;
+}
+
+void Passenger::setEmail(string email)
+{
+    this->email = email;
+}
+
+void Passenger::displayRole()
+{
+    cout << "Role : Passenger" << endl;
+}
+
+void Passenger::searchBus()
+{
+    cout << getName() << " is searching for a bus." << endl;
+}
+
+void Passenger::viewBookings()
+{
+    cout << getName() << " is viewing bookings." << endl;
+}
+
+void Passenger::cancelBooking()
+{
+    cout << getName() << " is cancelling a booking." << endl;
+}
+
+void Passenger::displayPassenger()
+{
+    cout << "\n========== PASSENGER ==========" << endl;
+
+    displayUser();
+    displayRole();
+
+    cout << "Email : " << email << endl;
+
+    cout << "===============================" << endl;
+}
+
+
+// ================= FRIEND OPERATOR =================
 
 bool operator==(const Passenger& p1,
                 const Passenger& p2)
