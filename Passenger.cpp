@@ -1,6 +1,5 @@
 #include "Passenger.h"
 
-// ================= USER =================
 
 User::User()
 {
@@ -34,7 +33,6 @@ void User::displayUser()
 }
 
 
-// ================= PASSENGER =================
 
 Passenger::Passenger()
     : User(0, "Unknown", "Unknown")
@@ -100,7 +98,7 @@ void Passenger::displayPassenger()
 }
 
 
-// ================= FRIEND OPERATOR =================
+
 
 bool operator==(const Passenger& p1,
                 const Passenger& p2)
