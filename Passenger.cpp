@@ -80,8 +80,6 @@ void Passenger::displayPassenger() {
 
 
 
-bool operator==(const Passenger& p1,
-                const Passenger& p2)
-{
+bool operator==(const Passenger& p1,const Passenger& p2) {
     return p1.userId == p2.userId;
 }
